@@ -34,12 +34,11 @@
 	xmlHttp.send(null);
 
 	// Get the returned events and parse the JSON
-	var rawVetTixEvents = xmlHttp.responseText;;
-	var vetTixEvents = JSON.parse(rawVetTixEvents);
+	var vetTixEvents = JSON.parse(xmlHttp.responseText);
 
 	// Set the var to append HTML of the events
 	var contentDiv = document.querySelector('div#content');
-	//moment.tz.setDefault("America/New_York");
+
 	// Loop through events
 	vetTixEvents.events.forEach(function(event) {
 		// Loop through the offers to see if at least one is enabled
@@ -54,9 +53,9 @@
 			// Create current datetime object in the event's timezone and the event datetime object to compare
 			var currentDateTime = moment.tz(event.timeZone);
 			var eventDateTime = moment.tz(event.eventDate+' '+event.eventTime, event.timeZone);
-			var eventVtfDateTime = eventDateTime.clone().tz('America/New_York');
 			if(eventDateTime > currentDateTime) {
-				// All conditions met so append the HTML to
+				// All conditions met so append the HTML to page
+				var eventVtfDateTime = eventDateTime.clone().tz('America/New_York');
 				var html='<div class="event_container">';
 				html += '<p>Event ID: '+event.eventId+'</p>';
 				html += '<p>Venu ID: '+event.venueId+'</p>';
