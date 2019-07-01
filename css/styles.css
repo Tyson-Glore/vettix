@@ -1,0 +1,10 @@
+.event_container {
+    border-width: 1px;
+    border: thin;
+    margin: 15px;
+    padding: 15px;
+}
+
+.nav_button {
+    width:200px;
+}
